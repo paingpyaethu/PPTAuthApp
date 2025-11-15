@@ -4,6 +4,7 @@ import {
   initialWindowMetrics,
   SafeAreaProvider,
 } from "react-native-safe-area-context";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import { AuthProvider } from "@/context/AuthContext";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import RootNavigator from "@/navigation/RootNavigator";
@@ -23,11 +24,13 @@ const AppContent = () => {
 const App = () => {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-      <ThemeProvider>
-        <AuthProvider>
-          <AppContent />
-        </AuthProvider>
-      </ThemeProvider>
+      <KeyboardProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <AppContent />
+          </AuthProvider>
+        </ThemeProvider>
+      </KeyboardProvider>
     </SafeAreaProvider>
   );
 };
