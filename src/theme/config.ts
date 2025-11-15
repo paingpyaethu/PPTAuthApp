@@ -55,6 +55,21 @@ const themeFontStyles = {
     fontSize: metricSizes._12,
     lineHeight: metricSizes._18,
   } as TextStyle,
+  fs_16: {
+    fontFamily: FONT_FAMILY.REGULAR,
+    fontSize: metricSizes._16,
+    lineHeight: metricSizes._22,
+  } as TextStyle,
+  fs_18: {
+    fontFamily: FONT_FAMILY.MEDIUM,
+    fontSize: metricSizes._18,
+    lineHeight: metricSizes._24,
+  } as TextStyle,
+  fs_28: {
+    fontFamily: FONT_FAMILY.BOLD,
+    fontSize: metricSizes._28,
+    lineHeight: metricSizes._35,
+  } as TextStyle,
 };
 
 const shadows = {

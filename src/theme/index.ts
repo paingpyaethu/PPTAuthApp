@@ -2,52 +2,40 @@ export type AppTheme = {
   mode: "light" | "dark";
   colors: {
     background: string;
-    card: string;
     textPrimary: string;
     textSecondary: string;
+    error: string;
+    cursorColor: string;
+    cardBackground: string;
     inputBackground: string;
     inputBorder: string;
-    error: string;
     buttonText: string;
   };
   gradients: {
     background: string[];
-    button: string[];
+    card: string[];
+    buttonPrimary: string[];
   };
-};
-
-export const lightTheme: AppTheme = {
-  mode: "light",
-  colors: {
-    background: "#F3F4F6",
-    card: "#FFFFFF",
-    textPrimary: "#111827",
-    textSecondary: "#6B7280",
-    inputBackground: "#FFFFFF",
-    inputBorder: "#D1D5DB",
-    error: "#EF4444",
-    buttonText: "#FFFFFF",
-  },
-  gradients: {
-    background: ["#60A5FA", "#34D399"],
-    button: ["#4F46E5", "#EC4899"],
-  },
 };
 
 export const darkTheme: AppTheme = {
   mode: "dark",
   colors: {
-    background: "#020617",
-    card: "#0F172A",
-    textPrimary: "#F9FAFB",
-    textSecondary: "#9CA3AF",
-    inputBackground: "#020617",
-    inputBorder: "#374151",
-    error: "#F97373",
-    buttonText: "#F9FAFB",
+    background: "#050816",
+    textPrimary: "#FFFFFF",
+    textSecondary: "#A6AEC5",
+    error: "#FB7185",
+    cursorColor: "#EC4899",
+    cardBackground: "rgba(255, 255, 255, 0.1)",
+    inputBackground: "rgba(36,16,39,0.98)",
+    inputBorder: "rgba(120,130,170,0.6)",
+    buttonText: "#FFFFFF",
   },
   gradients: {
-    background: ["#6366F1", "#EC4899"],
-    button: ["#22C55E", "#06B6D4"],
+    background: ["#1E1034", "#050816"],
+    card: ["rgba(23,18,48,0.98)", "rgba(36,16,39,0.98)"],
+    buttonPrimary: ["#FF4B9A", "#FF4BD8", "#9B5CFF"],
   },
 };
+
+export const lightTheme: AppTheme = darkTheme;
