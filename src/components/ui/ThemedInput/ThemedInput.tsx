@@ -71,7 +71,7 @@ const ThemedInput = <T extends FieldValues>({
         <TextInput
           {...rest}
           placeholderTextColor={theme.colors.textSecondary}
-          style={[styles.input, { color: theme.colors.textPrimary }, style]}
+          style={[styles.input, { color: "#FFFFFF" }, style]}
           onChangeText={onChange}
           value={value}
           autoCapitalize="none"

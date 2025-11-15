@@ -73,7 +73,7 @@ export const MailIcon = ({
 );
 
 export const UserIcon = ({
-  size = config.spacing._20,
+  size = config.spacing._22,
   color = "#9CA3AF",
 }: IconProps) => (
   <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
@@ -112,6 +112,36 @@ export const LockIcon = ({
       stroke={color}
       strokeWidth={config.spacing._1}
       strokeLinecap="round"
+    />
+  </Svg>
+);
+
+export const MoonIcon = ({
+  size = config.spacing._35,
+  color = "#9CA3AF",
+}: IconProps) => (
+  <Svg fill="none" viewBox="0 0 24 24" width={size} height={size}>
+    <Path
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={config.spacing._1}
+      d="M13 6V3m5.5 9V7m-4-2.5h-3m9.5 5h-5m-.445 7.315a8.34 8.34 0 0 0 3.445-.74A8.37 8.37 0 1 1 7.925 5a8.37 8.37 0 0 0 7.63 11.815Z"
+    />
+  </Svg>
+);
+
+export const SunIcon = ({
+  size = config.spacing._35,
+  color = "#9CA3AF",
+}: IconProps) => (
+  <Svg fill="none" viewBox="0 0 24 24" width={size} height={size}>
+    <Path
+      stroke={color}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={config.spacing._1}
+      d="M7.455 2v1m3.889.61-.707.708m-6.364 6.364-.707.707M1.956 7.5h1m.61-3.89.708.708M6.5 9.213a2.004 2.004 0 0 1-1.045-1.758A2 2 0 0 1 9.403 7M9.8 21C7.149 21 5 18.947 5 16.414c0-2.1 1.6-4.039 4-4.414a5.057 5.057 0 0 1 4.613-3c2.662 0 4.837 1.99 4.987 4.5 1.413.596 2.4 2.057 2.4 3.64 0 2.132-1.79 3.86-4 3.86H9.8Z"
     />
   </Svg>
 );

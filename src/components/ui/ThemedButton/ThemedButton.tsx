@@ -37,7 +37,7 @@ const ThemedButton = ({
       activeOpacity={0.9}
       onPress={onPress}
       disabled={isDisabled}
-      style={[style, isDisabled && { opacity: 0.7 }]}
+      style={[style, isDisabled && { opacity: 0.5 }]}
     >
       <LinearGradient
         colors={theme.gradients.buttonPrimary}

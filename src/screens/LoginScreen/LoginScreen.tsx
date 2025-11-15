@@ -20,12 +20,13 @@ import { config } from "@/theme/config";
 import { KeyboardAvoidingView } from "react-native-keyboard-controller";
 import { isIos } from "@/utils/helper";
 import { useSafeAreaInsetsStyle } from "@/utils/useSafeAreaInsetsStyle";
+import { showToast } from "@/utils/showToast";
 
 type LoginScreenProps = NativeStackScreenProps<AuthStackParamList, "Login">;
 
 const loginSchema = z.object({
-  email: z.email("Invalid email"),
-  password: z.string().min(1, "Password is required"),
+  email: z.email("Invalid email format"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -37,7 +38,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const { theme } = useAppTheme();
   const { login, loading } = useAuth();
 
-  const { control, handleSubmit } = useForm<LoginFormValues>({
+  const { control, handleSubmit, setError } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "" },
   });
@@ -70,8 +71,25 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
   const onSubmit = async (values: LoginFormValues) => {
     try {
       await login(values);
-    } catch (e) {
-      console.warn(e);
+      showToast({
+        type: "success",
+        text2: "Login Successful. ✅",
+        topOffset: config.spacing._80,
+      });
+    } catch (e: any) {
+      const message =
+        e?.message === "Incorrect credentials"
+          ? "Incorrect credentials"
+          : e?.message || "Login failed. Please try again.";
+
+      setTimeout(() => {
+        ["email", "password"].forEach(field => {
+          setError(field as "email" | "password", {
+            type: "manual",
+            message,
+          });
+        });
+      }, 2000);
     }
   };
 
@@ -101,7 +119,10 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
               bottom,
             ]}
           >
-            <ThemedText variant="fs_28" style={{ textAlign: "center" }}>
+            <ThemedText
+              variant="fs_28"
+              style={{ textAlign: "center", color: "#FFFFFF" }}
+            >
               Welcome Back!
             </ThemedText>
 
@@ -109,7 +130,7 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
             <ThemedInput
               label="Email Address"
-              placeholder="yourname@gmail.com"
+              placeholder="yourmail@gmail.com"
               keyboardType="email-address"
               name="email"
               control={control}
@@ -128,7 +149,14 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
 
             <View style={styles.forgotRow}>
               <TouchableOpacity>
-                <ThemedText>Forgot Password?</ThemedText>
+                <ThemedText
+                  style={{
+                    color: "#FFFFFF",
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  Forgot Password?
+                </ThemedText>
               </TouchableOpacity>
             </View>
 
@@ -145,7 +173,15 @@ const LoginScreen = ({ navigation }: LoginScreenProps) => {
                 {"Don't have an account?"}
               </ThemedText>
               <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-                <ThemedText> Sign up</ThemedText>
+                <ThemedText
+                  style={{
+                    color: "#FFFFFF",
+                    textDecorationLine: "underline",
+                  }}
+                >
+                  {" "}
+                  Sign up
+                </ThemedText>
               </TouchableOpacity>
             </View>
           </View>

@@ -9,14 +9,16 @@ import { AuthProvider } from "@/context/AuthContext";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import RootNavigator from "@/navigation/RootNavigator";
 import { ThemeProvider } from "@/theme/ThemeProvider";
+import { CustomToast } from "@/components/ui";
 
 const AppContent = () => {
   const { theme } = useAppTheme();
 
   return (
     <>
-      <SystemBars style={theme.mode === "dark" ? "light" : "dark"} />
+      <SystemBars style={"light"} />
       <RootNavigator />
+      <CustomToast />
     </>
   );
 };
