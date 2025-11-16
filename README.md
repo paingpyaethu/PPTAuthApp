@@ -164,7 +164,6 @@ Using **react-native-toast-message**, the app presents:
 
 - Signup success
 - Login success
-- Logout success
 
 ---
 
