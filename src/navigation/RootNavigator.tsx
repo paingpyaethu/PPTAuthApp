@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useAuth } from "@/hooks/useAuth";
-import { LoginScreen, SignupScreen, HomeScreen } from "@/screens";
+import { LoginScreen, SignupScreen, HomeScreen, SplashScreen } from "@/screens";
 import { View } from "react-native";
 
 export type AuthStackParamList = {
@@ -36,7 +36,7 @@ const RootNavigator = () => {
   const { user, initializing } = useAuth();
 
   if (initializing) {
-    return null;
+    return <SplashScreen />;
   }
 
   return (

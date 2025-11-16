@@ -11,7 +11,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { config } from "@/theme/config";
 import { MoonIcon, SunIcon } from "@/svg/CommonIcons";
 
-const HomeScreen: React.FC = () => {
+const HomeScreen = () => {
   const { theme, toggleTheme } = useAppTheme();
   const { user, logout } = useAuth();
 
@@ -22,10 +22,15 @@ const HomeScreen: React.FC = () => {
       imageStyle={styles.heroBgImage}
     >
       <ThemedCard>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <View style={{ width: "80%" }}>
             <ThemedText
-              variant="fs_28"
+              variant="fs_24"
               style={{ marginBottom: config.spacing._16 }}
             >
               Hello, {user?.name ?? "User"} 👋
@@ -35,13 +40,15 @@ const HomeScreen: React.FC = () => {
             </ThemedText>
           </View>
 
-          <TouchableOpacity onPress={toggleTheme}>
-            {theme.mode === "light" ? (
-              <MoonIcon color={theme.colors.textPrimary} />
-            ) : (
-              <SunIcon color={theme.colors.textPrimary} />
-            )}
-          </TouchableOpacity>
+          <View style={{ width: "20%", alignItems: "flex-end" }}>
+            <TouchableOpacity onPress={toggleTheme}>
+              {theme.mode === "light" ? (
+                <MoonIcon color={theme.colors.textPrimary} />
+              ) : (
+                <SunIcon color={theme.colors.textPrimary} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
 
         <ThemedButton

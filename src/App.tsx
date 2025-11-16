@@ -12,8 +12,6 @@ import { ThemeProvider } from "@/theme/ThemeProvider";
 import { CustomToast } from "@/components/ui";
 
 const AppContent = () => {
-  const { theme } = useAppTheme();
-
   return (
     <>
       <SystemBars style={"light"} />

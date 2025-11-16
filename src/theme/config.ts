@@ -65,6 +65,11 @@ const themeFontStyles = {
     fontSize: metricSizes._18,
     lineHeight: metricSizes._24,
   } as TextStyle,
+  fs_24: {
+    fontFamily: FONT_FAMILY.BOLD,
+    fontSize: metricSizes._24,
+    lineHeight: metricSizes._30,
+  } as TextStyle,
   fs_28: {
     fontFamily: FONT_FAMILY.BOLD,
     fontSize: metricSizes._28,

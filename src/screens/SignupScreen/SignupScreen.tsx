@@ -86,7 +86,6 @@ const SignupScreen = ({ navigation }: SignupScreenProps) => {
   return (
     <KeyboardAvoidingView
       behavior={isIos ? "padding" : "height"}
-      keyboardVerticalOffset={isIos ? config.spacing._80 : 0}
       style={styles.kav}
     >
       <ImageBackground

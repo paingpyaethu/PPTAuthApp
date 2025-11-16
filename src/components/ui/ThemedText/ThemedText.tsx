@@ -4,7 +4,7 @@ import { useAppTheme } from "@/hooks/useAppTheme";
 import { config } from "@/theme/config";
 
 type ThemedTextProps = TextProps & {
-  variant?: "fs_28" | "fs_18" | "fs_16" | "fs_12";
+  variant?: "fs_28" | "fs_24" | "fs_18" | "fs_16" | "fs_12";
 };
 
 const ThemedText = ({
@@ -19,6 +19,8 @@ const ThemedText = ({
     switch (variant) {
       case "fs_28":
         return config.fonts.fs_28;
+      case "fs_24":
+        return config.fonts.fs_24;
       case "fs_18":
         return config.fonts.fs_18;
       case "fs_16":

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { useAppTheme } from "@/hooks/useAppTheme";
 import { config } from "@/theme/config";
@@ -19,7 +19,7 @@ const ThemedCard = ({ children, style }: ThemedCardProps) => {
       end={{ x: 1, y: 1 }}
       style={[styles.gradient, style]}
     >
-      {children}
+      <View style={styles.inner}>{children}</View>
     </LinearGradient>
   );
 };
@@ -27,8 +27,13 @@ const ThemedCard = ({ children, style }: ThemedCardProps) => {
 const styles = StyleSheet.create({
   gradient: {
     borderRadius: config.spacing._24,
-    padding: config.spacing._20,
     overflow: "hidden",
+  },
+  inner: {
+    borderRadius: config.spacing._30,
+    paddingHorizontal: config.spacing._22,
+    paddingTop: config.spacing._22,
+    paddingBottom: config.spacing._24,
   },
 });
 
