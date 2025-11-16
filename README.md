@@ -1,97 +1,180 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# PPTAuthApp
 
-# Getting Started
+A modern authentication app built with **React Native CLI**, **TypeScript**, and a beautifully designed UI featuring gradient cards, illustrations, and reusable components.  
+The app includes splash screen, login, signup, home screen, form validation, persistent authentication, theming, reusable components, and animated interactions.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## ✨ Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- 🔐 **Authentication Flow** — Login, Signup, Logout
+- 💾 **Persistent Auth** using AsyncStorage
+- 📝 **Form Validation** using react-hook-form + zod
+- 🔄 **Auto Login** after app restart
+- 🎨 **Dark & Light Mode** themed UI
+- 🌈 **Gradient Buttons & Cards**
+- 🧩 **Reusable UI Components**
+- 👁 **Password Visibility Toggle** (SVG Icon)
+- 🎉 **Toast Notifications** for login & signup
+- ⌨️ **Smooth Keyboard Handling** using `react-native-keyboard-controller`
+- 📱 **Android 15+ Edge-to-Edge Support**
+- 🎬 **Animated Illustration Fade-Out on Keyboard Open**
+- 🖼 **Splash Screen with Custom Illustration**
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## 🔧 Authentication Logic
 
-# OR using Yarn
-yarn start
+### **Signup Flow**
+
+- User enters name, email, password
+- Credentials saved to:
+
+```
+@auth_registered_user
 ```
 
-## Step 2: Build and run your app
+- App navigates back to Login screen
+- User is NOT auto-logged-in
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+---
 
-### Android
+### **Login Flow**
 
-```sh
-# Using npm
-npm run android
+- Reads data from:
 
-# OR using Yarn
+```
+@auth_registered_user
+```
+
+- If missing or incorrect → error displayed using react-hook-form’s `setError`
+- On success:
+  - Saves session at `@persist_user`
+  - Loads authenticated App stack
+
+---
+
+### **Auto Login**
+
+On app launch, the app tries to load:
+
+```
+@persist_user
+```
+
+If found → user goes directly to Home.
+
+---
+
+## 🧭 Navigation
+
+The app uses **React Navigation** with:
+
+- **Auth Stack:** Login, Signup
+- **App Stack:** Home
+- **RootNavigator:** determines which stack to show
+- **SplashScreen** appears while loading persisted auth
+
+---
+
+## 🎨 UI & Theming
+
+- Custom light & dark themes
+- Gradient backgrounds (cards, buttons)
+- Fully themed text, inputs, and interactive elements
+- Beautiful 3D illustrations for login, signup, splash
+- Reusable styling from:
+
+```
+src/theme/index.ts
+src/theme/config.ts
+```
+
+---
+
+## 🛠 Tech Stack
+
+| Feature       | Technology                       |
+| ------------- | -------------------------------- |
+| Framework     | React Native CLI                 |
+| Language      | TypeScript                       |
+| Navigation    | React Navigation                 |
+| State & Auth  | React Context API                |
+| Form Handling | react-hook-form                  |
+| Validation    | zod                              |
+| Persistence   | AsyncStorage                     |
+| UI Styling    | react-native-linear-gradient     |
+| Toasts        | react-native-toast-message       |
+| Icons         | react-native-svg                 |
+| Keyboard UX   | react-native-keyboard-controller |
+| Android UX    | react-native-edge-to-edge        |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/paingpyaethu/PPTAuthApp.git
+cd PPTAuthApp
+```
+
+---
+
+### 2. Install dependencies
+
+```bash
+yarn install
+```
+
+---
+
+### 3. Run on Android
+
+```bash
 yarn android
 ```
 
-### iOS
+---
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### 4. Run on iOS
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
+```bash
+cd ios
 bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
 bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
+cd ..
 yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## 🏠 Home Screen
 
-## Step 3: Modify your app
+- Shows logged-in user info
+- Logout button clears session
+- Theme toggle included
 
-Now that you have successfully run the app, let's make changes!
+---
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## 🎉 Toast Messages
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+Using **react-native-toast-message**, the app presents:
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+- Signup success
+- Login success
+- Logout success
 
-## Congratulations! :tada:
+---
 
-You've successfully run and modified your React Native App. :partying_face:
+## 📸 Splash Screen
 
-### Now what?
+A custom 3D illustration splash screen appears while loading stored user authentication.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+---
 
-# Troubleshooting
+## 📜 License
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This project is for demo & educational purposes.  
+You may reuse components freely.
